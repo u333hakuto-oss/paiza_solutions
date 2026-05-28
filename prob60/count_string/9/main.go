@@ -4,22 +4,21 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
 	buf := bufio.NewReader(os.Stdin)
 	var s, t string
 	fmt.Fscan(buf, &s, &t)
-	ls, lt := len(s), len(t)
-	if lt < ls {
-		fmt.Println(0)
-	} else {
-		count := 0
-		for i := 0; i <= lt-ls; i++ {
-			if t[i:i+ls] == s {
-				count++
-			}
+	count, pos := 0, 0
+	for {
+		idx := strings.Index(t[pos:], s)
+		if idx == -1 {
+			break
 		}
-		fmt.Println(count)
+		count++
+		pos += idx + 1
 	}
+	fmt.Println(count)
 }

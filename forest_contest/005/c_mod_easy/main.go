@@ -5,11 +5,9 @@ import "fmt"
 func main() {
 	var x, y, z int
 	fmt.Scan(&x, &y, &z)
-	for {
-		if x%y == z {
-			break
-		}
-		x++
+	diff := z - x%y
+	if diff < 0 {
+		diff += y
 	}
-	fmt.Println(x)
+	fmt.Println(x + diff)
 }

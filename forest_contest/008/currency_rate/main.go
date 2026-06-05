@@ -8,20 +8,21 @@ import (
 
 func main() {
 	buf := bufio.NewReader(os.Stdin)
-	var n, diff, a, b int
+	var n, minidx, diff, a, b int
+	min := 130 // m ≦ 130
 	fmt.Fscan(buf, &n)
-	list := make([]int, n+1)
 	for i := 1; i <= n; i++ {
 		var m int
 		fmt.Fscan(buf, &m)
-		list[i] = m
-	}
-	for i := 1; i <= n; i++ {
-		for j := i + 1; j <= n; j++ {
-			currentdiff := list[j] - list[i]
+		if m < min {
+			min = m
+			minidx = i
+
+		} else {
+			currentdiff := m - min
 			if currentdiff > diff {
 				diff = currentdiff
-				a, b = i, j
+				a, b = minidx, i
 			}
 		}
 	}

@@ -1,30 +1,30 @@
+// Sliding Window
+
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
-	"regexp"
 )
 
 func main() {
 	buf := bufio.NewReader(os.Stdin)
 	var s string
-	reg := regexp.MustCompile("LLLRB|DDRRA|AAAAA")
 	fmt.Fscan(buf, &s)
-	for {
-		loc := reg.FindStringIndex(s)
-		if loc == nil {
-			break
-		}
-		switch s[loc[0]] {
-		case 'L':
+	for i := 0; i <= len(s)-5; {
+		switch s[i : i+5] {
+		case "LLLRB":
 			fmt.Println("rolling")
-		case 'D':
+			i += 5
+		case "DDRRA":
 			fmt.Println("upper")
-		case 'A':
+			i += 5
+		case "AAAAA":
 			fmt.Println("rush")
+			i += 5
+		default:
+			i++
 		}
-		s = s[loc[1]:]
 	}
 }

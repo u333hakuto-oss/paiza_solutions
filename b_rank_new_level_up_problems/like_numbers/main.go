@@ -1,13 +1,15 @@
 package main
+
 import (
-    "fmt"
-    "bufio"
-    "os"
+	"bufio"
+	"fmt"
+	"os"
 )
-func main(){
-    buf := bufio.NewReader(os.Stdin)
-    var s string
-    fmt.Fscan(buf, &s)
+
+func main() {
+	buf := bufio.NewReader(os.Stdin)
+	var s string
+	fmt.Fscan(buf, &s)
 	var positions []int
 	for i, r := range s {
 		if '0' <= r && r <= '9' {
@@ -16,7 +18,7 @@ func main(){
 	}
 	for i := 0; i < len(positions); i++ {
 		for j := i; j < len(positions); j++ {
-			fmt.Println(s[positions[i]:positions[j]+1])
-		} 
+			fmt.Println(s[positions[i] : positions[j]+1])
+		}
 	}
 }

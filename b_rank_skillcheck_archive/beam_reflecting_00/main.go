@@ -18,31 +18,20 @@ func main() {
 		fmt.Fscan(buf, &s)
 		grid[i] = []byte(s)
 	}
-	const (
-		Right = iota
-		Down
-		Left
-		Up
-	)
-	y, x, dir := 0, -1, Right
+	y, x := 0, -1
+	dy, dx := 0, 1
 	count := 0
-	dy := []int{0, 1, 0, -1}
-	dx := []int{1, 0, -1, 0}
 	for {
-		y += dy[dir]
-		x += dx[dir]
+		y += dy
+		x += dx
 		if y < 0 || y >= h || x < 0 || x >= w {
 			break
 		}
 		switch grid[y][x] {
 		case '/':
-			dir = 3 - dir
+			dy, dx = -1*dx, -1*dy
 		case '\\':
-			if dir%2 == 0 {
-				dir++
-			} else {
-				dir--
-			}
+			dy, dx = dx, dy
 		}
 		count++
 	}

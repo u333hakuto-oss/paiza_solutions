@@ -16,12 +16,12 @@ func main() {
 		fmt.Fscan(in, &s)
 		grid[i] = []byte(s)
 	}
+	dy := []int{-1, 1, 0, 0, -1, 1, -1, 1}
+	dx := []int{0, 0, -1, 1, -1, 1, 1, -1}
 	for i := 0; i < n; i++ {
 		var y, x int
 		fmt.Fscan(in, &y, &x)
 		grid[y][x] = '*'
-		dy := []int{-1, 1, 0, 0, -1, 1, -1, 1}
-		dx := []int{0, 0, -1, 1, -1, 1, 1, -1}
 		for d := 0; d < 8; d++ {
 			ny := y
 			nx := x
